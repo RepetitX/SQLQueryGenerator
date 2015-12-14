@@ -47,6 +47,12 @@ namespace SQLQueryGenerator.QueryParameters
             conditions.Add(new QueryCondition<T>(field, Condition));
         }
 
+        public void AddCondition<T>(string FieldName, ListCondition Condition, IEnumerable<T> Values) where T : struct
+        {
+            QueryField<T> field = fieldsContainer.GetQueryField<T>(FieldName);
+            conditions.Add(new QueryCondition<T>(field, Condition, Values));
+        }
+
         public ConditionGroup AddConditionGroup(ConditionGroupType ConditionType)
         {
             ConditionGroup group = new ConditionGroup(ConditionType, fieldsContainer);
