@@ -49,6 +49,12 @@ namespace SQLQueryGenerator.QueryParameters
 
         public QueryCondition(QueryField<T> Field, ListCondition Condition, IEnumerable<T> Values)
         {
+            if (Values == null)
+            {
+                queryPart = "";
+                return;
+            }
+
             string values = string.Join(", ", Values);
 
             if (String.IsNullOrWhiteSpace(values))
