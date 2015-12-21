@@ -51,12 +51,18 @@ namespace SQLQueryGenerator.Queries
 
         public void AddSortingField(IQueryField Field, SortDirection Direction)
         {
+            if (Direction == SortDirection.None)
+                return;
+
             fieldsContainer.AddField(Field);
 
             sortingFields.Add(Field.Alias, Direction);
         }
+
         public void AddSortingField(string Alias, SortDirection Direction)
         {
+            if (Direction == SortDirection.None)
+                return;
             IQueryField field = fieldsContainer.GetField(Alias);
 
             sortingFields.Add(Alias, Direction);
