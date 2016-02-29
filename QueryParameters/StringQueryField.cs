@@ -13,7 +13,7 @@
 
         public string GetQueryPart()
         {
-            throw new System.NotImplementedException();
+            return Expression;
         }
        
         public string GetTypeName()
