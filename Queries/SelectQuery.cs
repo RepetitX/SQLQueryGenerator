@@ -122,7 +122,7 @@ namespace SQLQueryGenerator.Queries
             }
             if (Skip > 0)
             {
-                queryString.AppendFormat("\noffset {0} rows", Skip);
+                queryString.AppendFormat("\noffset ({0}) rows", Skip);
                 if (Take > 0)
                 {
                     queryString.AppendFormat(" fetch next {0} rows", Take);
