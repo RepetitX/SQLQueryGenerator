@@ -14,9 +14,9 @@ namespace SQLQueryGenerator.Extensions
                     return "<";
                 case CompareCondition.LessOrEqual:
                     return "<=";
-                case CompareCondition.More:
+                case CompareCondition.Greater:
                     return ">";
-                case CompareCondition.MoreOrEqual:
+                case CompareCondition.GreaterOrEqual:
                     return ">=";                
                 case CompareCondition.NotEqual:
                 default:

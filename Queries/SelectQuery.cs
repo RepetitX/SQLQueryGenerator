@@ -125,7 +125,7 @@ namespace SQLQueryGenerator.Queries
                 queryString.AppendFormat("\noffset ({0}) rows", Skip);
                 if (Take > 0)
                 {
-                    queryString.AppendFormat(" fetch next {0} rows", Take);
+                    queryString.AppendFormat(" fetch next {0} rows only", Take);
                 }
             }
 

@@ -10,8 +10,8 @@ namespace SQLQueryGenerator.QueryParameters
         Less,
         LessOrEqual,
         Equal,
-        MoreOrEqual,
-        More,
+        GreaterOrEqual,
+        Greater,
         NotEqual
     }
 
