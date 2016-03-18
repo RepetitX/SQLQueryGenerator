@@ -22,6 +22,8 @@ namespace SQLQueryGenerator.Queries
         }
 
         public bool Distinct { get; set; }
+        public int Take { get; set; }
+        public int Skip { get; set; }
 
         public SelectQuery()
             : this(ConditionGroupType.And)
@@ -87,6 +89,10 @@ namespace SQLQueryGenerator.Queries
             {
                 queryString.Append("distinct ");
             }
+            if (Take > 0 && Skip <= 0)
+            {
+                queryString.AppendFormat("top {0} ", Take);
+            }
 
             if (selectFields.Count > 0)
             {
@@ -113,6 +119,14 @@ namespace SQLQueryGenerator.Queries
             {
                 queryString.AppendFormat("\norder by {0}",
                     string.Join("\n,", sortingFields.Select(GetSortingField)));
+            }
+            if (Skip > 0)
+            {
+                queryString.AppendFormat("\noffset {0} rows", Skip);
+                if (Take > 0)
+                {
+                    queryString.AppendFormat(" fetch next {0} rows", Take);
+                }
             }
 
             return queryString.ToString();
