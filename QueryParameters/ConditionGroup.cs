@@ -46,6 +46,11 @@ namespace SQLQueryGenerator.QueryParameters
             StringQueryField field = (StringQueryField) fieldsContainer.GetField(FieldName);
             conditions.Add(new StringCondition(field, Comparsion, Value));
         }
+        public void AddCondition(string FieldName, StringCompareCondition Comparsion, string Value)
+        {
+            StringQueryField field = (StringQueryField)fieldsContainer.GetField(FieldName);
+            conditions.Add(new StringCondition(field, Comparsion, Value));
+        }
 
         public void AddCondition<T>(string FieldName, NullCondition Condition) where T : struct
         {

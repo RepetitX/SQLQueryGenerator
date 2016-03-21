@@ -4,6 +4,13 @@ using SQLQueryGenerator.Extensions;
 
 namespace SQLQueryGenerator.QueryParameters
 {
+    public enum StringCompareCondition
+    {
+        BeginsWith,
+        EndsWith,
+        Contains
+    }
+
     public class StringCondition : BaseCondition
     {
         public StringCondition(StringQueryField Field, CompareCondition Condition, string Value)
@@ -16,6 +23,29 @@ namespace SQLQueryGenerator.QueryParameters
             }
 
             queryPart = $"{Field.GetQueryPart()} {Condition.GetSign()} '{Value}'";
+        }
+
+        public StringCondition(StringQueryField Field, StringCompareCondition Condition, string Value)
+        {
+            Value = Value.Replace("'", "''");
+            if (string.IsNullOrWhiteSpace(Value))
+            {
+                queryPart = "";
+                return;
+            }
+
+            switch (Condition)
+            {
+                case StringCompareCondition.BeginsWith:
+                    queryPart = $"{Field.GetQueryPart()} like '{Value}%'";
+                    break;
+                case StringCompareCondition.Contains:
+                    queryPart = $"{Field.GetQueryPart()} like '%{Value}%'";
+                    break;
+                case StringCompareCondition.EndsWith:
+                    queryPart = $"{Field.GetQueryPart()} like '%{Value}'";
+                    break;
+            }
         }
 
         public StringCondition(StringQueryField Field, ListCondition Condition, IEnumerable<string> Values)
