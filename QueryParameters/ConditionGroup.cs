@@ -43,7 +43,7 @@ namespace SQLQueryGenerator.QueryParameters
 
         public void AddCondition(string FieldName, CompareCondition Comparsion, string Value)
         {
-            StringQueryField field = (StringQueryField)fieldsContainer.GetField(FieldName);
+            StringQueryField field = (StringQueryField) fieldsContainer.GetField(FieldName);
             conditions.Add(new StringCondition(field, Comparsion, Value));
         }
 
@@ -58,9 +58,10 @@ namespace SQLQueryGenerator.QueryParameters
             QueryField<T> field = fieldsContainer.GetQueryField<T>(FieldName);
             conditions.Add(new QueryCondition<T>(field, Condition, Values));
         }
+
         public void AddCondition(string FieldName, ListCondition Condition, IEnumerable<string> Values)
         {
-            StringQueryField field = (StringQueryField)fieldsContainer.GetField(FieldName);
+            StringQueryField field = (StringQueryField) fieldsContainer.GetField(FieldName);
             conditions.Add(new StringCondition(field, Condition, Values));
         }
 
@@ -73,9 +74,17 @@ namespace SQLQueryGenerator.QueryParameters
 
         public string GetQueryPart()
         {
-            return string.Format("({0})",
-                string.Join(Type == ConditionGroupType.And ? "\nand " : "\nor ",
-                    conditions.Where(cnd => !cnd.IsEmpty).Select(cnd => string.Format("{0}", cnd.GetQueryPart()))));
+            string condtions = string.Join(Type == ConditionGroupType.And ? "\nand " : "\nor ",
+                conditions.Where(cnd => !cnd.IsEmpty).Select(cnd => cnd.GetQueryPart()));
+
+            if (string.IsNullOrWhiteSpace(condtions))
+            {
+                return "";
+            }
+            else
+            {
+                return $"{condtions}";
+            }
         }
     }
 }
