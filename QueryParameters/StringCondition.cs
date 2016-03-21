@@ -14,25 +14,25 @@ namespace SQLQueryGenerator.QueryParameters
     public class StringCondition : BaseCondition
     {
         public StringCondition(StringQueryField Field, CompareCondition Condition, string Value)
-        {
-            Value = Value.Replace("'", "''");
+        {            
             if (string.IsNullOrWhiteSpace(Value))
             {
                 queryPart = "";
                 return;
             }
+            Value = Value.Replace("'", "''");
 
             queryPart = $"{Field.GetQueryPart()} {Condition.GetSign()} '{Value}'";
         }
 
         public StringCondition(StringQueryField Field, StringCompareCondition Condition, string Value)
-        {
-            Value = Value.Replace("'", "''");
+        {            
             if (string.IsNullOrWhiteSpace(Value))
             {
                 queryPart = "";
                 return;
             }
+            Value = Value.Replace("'", "''");
 
             switch (Condition)
             {
