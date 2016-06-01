@@ -88,7 +88,7 @@ namespace SQLQueryGenerator.QueryParameters
             }
             else
             {
-                return $"{condtions}";
+                return $"({condtions})";
             }
         }
     }
