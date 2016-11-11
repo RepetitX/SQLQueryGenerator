@@ -59,6 +59,7 @@
     <Compile Include="QueryParameters\SortDirection.cs" />
     <Compile Include="QueryParameters\StringCondition.cs" />
     <Compile Include="QueryParameters\StringQueryField.cs" />
+    <Compile Include="QueryParameters\SubQueryCondition.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
