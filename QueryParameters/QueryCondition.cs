@@ -2,6 +2,7 @@
 using System;
 using SQLQueryGenerator.Extensions;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace SQLQueryGenerator.QueryParameters
 {
@@ -40,7 +41,7 @@ namespace SQLQueryGenerator.QueryParameters
                     value = string.Format("'{0:yyyy-MM-dd HH:mm:ss}'", (IFormattable) Value.Value);
                     break;                    
                 default:
-                    value = Value.Value.ToString();
+                    value = Convert.ToString(Value, CultureInfo.InvariantCulture);
                     break;
             }
 
