@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SQLQueryGenerator.QueryParameters
+﻿namespace SQLQueryGenerator.QueryParameters
 {
     public class SelectAllQueryField : IQueryField
     {      
@@ -17,6 +12,7 @@ namespace SQLQueryGenerator.QueryParameters
         public SelectAllQueryField(string Expression)
         {
             this.Expression = Expression;
+            Alias = Expression;
         }
 
         public string GetTypeName()
