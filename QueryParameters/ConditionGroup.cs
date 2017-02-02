@@ -57,6 +57,11 @@ namespace SQLQueryGenerator.QueryParameters
             QueryField<T> field = fieldsContainer.GetQueryField<T>(FieldName);
             conditions.Add(new QueryCondition<T>(field, Condition));
         }
+        public void AddCondition(string FieldName, NullCondition Condition)
+        {
+            StringQueryField field = (StringQueryField)fieldsContainer.GetField(FieldName);
+            conditions.Add(new BaseCondition(field, Condition));
+        }
 
         public void AddCondition<T>(string FieldName, ListCondition Condition, IEnumerable<T> Values) where T : struct
         {
