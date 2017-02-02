@@ -56,6 +56,7 @@
     <Compile Include="QueryParameters\QueryField.cs" />
     <Compile Include="QueryParameters\QueryFieldsContainer.cs" />
     <Compile Include="QueryParameters\QueryTable.cs" />
+    <Compile Include="QueryParameters\SelectAllQueryField.cs" />
     <Compile Include="QueryParameters\SortDirection.cs" />
     <Compile Include="QueryParameters\StringCondition.cs" />
     <Compile Include="QueryParameters\StringQueryField.cs" />

@@ -135,6 +135,11 @@ namespace SQLQueryGenerator.Queries
         protected string GetSelectField(string Alias)
         {
             IQueryField field = fieldsContainer.GetField(Alias);
+            if (field is SelectAllQueryField)
+            {
+                return field.Expression;
+            }
+
             if (field.Expression == field.Alias)
             {
                 return Alias;
@@ -144,6 +149,7 @@ namespace SQLQueryGenerator.Queries
                 return string.Format("{0} as {1}", field.Expression, field.Alias);
             }
         }
+
         protected string GetSortingField(KeyValuePair<string, SortDirection> SortingField)
         {
             IQueryField field = fieldsContainer.GetField(SortingField.Key);
